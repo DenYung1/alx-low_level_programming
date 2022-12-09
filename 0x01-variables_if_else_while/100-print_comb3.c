@@ -12,7 +12,7 @@ int main(void)
 	for (w = '0'; d < 100; w++)
 	{
 		putchar((w / 10) + '0');
-		putchar((d % 10) + '0');
+		putchar((w % 10) + '0');
 		if (w != 99)
 		{
 			putchar(',');
