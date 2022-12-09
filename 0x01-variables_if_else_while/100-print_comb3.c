@@ -13,16 +13,17 @@ int main(void)
 	{
 		for (n = w + 1; n <= 10; n++)
 		{
-			if (!((w == n) || (w > n)))
-			{
+
 				putchar((w % 10) + '0');
 				putchar((n % 10) + '0');
+
 				if (w == 8 && n == 9)
-				{
+					continue;
+
 					putchar(',');
 					putchar(' ');
-				}
-			}
+
+
 		}
 	}
 	putchar('\n');
