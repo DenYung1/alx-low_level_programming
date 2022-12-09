@@ -5,7 +5,7 @@
  * main - Reverse Alphabets
  * Return: Always 0
  */
-intr main(void)
+int main(void)
 {
 	char dennis;
 
