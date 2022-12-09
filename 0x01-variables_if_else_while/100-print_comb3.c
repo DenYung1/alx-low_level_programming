@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	int w, x;
+	int w;
 
 	for (w = 0; w <= 100; w++)
 	{
