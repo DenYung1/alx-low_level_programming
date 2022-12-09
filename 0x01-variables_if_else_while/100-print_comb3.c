@@ -7,16 +7,22 @@
  */
 int main(void)
 {
-	int w;
+	int w, n;
 
-	for (w = 0; w <= 100; w++)
+	for (w = 48; w <= 56; w++)
 	{
-		putchar((w / 10) + '0');
-		putchar((w % 10) + '0');
-		if (w != 99)
+		for (n = 49; n <= 57; n++)
 		{
-			putchar(',');
-			putchar(' ');
+			if (w > n)
+			{
+				putchar(w);
+				putchar(n);
+				if (w != 56 || n != 57)
+				{
+					putchar(',');
+					putchar(',');
+				}
+			}
 		}
 	}
 	putchar('\n');
