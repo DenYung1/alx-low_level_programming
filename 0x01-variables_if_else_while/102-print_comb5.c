@@ -9,7 +9,7 @@ int main(void)
 {
 	int a, b;
 	
-	for (a = 0; a <=98; a++)
+	for (a = 0; a <= 98; a++)
 	{
 		for (b = a + 1; b <= 90; b++)
 		{
@@ -19,7 +19,7 @@ int main(void)
 			putchar((b / 10) + '0');
 			putchar((b % 10) + '0');
 
-			if (a == 98 && b ==99)
+			if (a == 98 && b == 99)
 				continue;
 
 			putchar(',');
