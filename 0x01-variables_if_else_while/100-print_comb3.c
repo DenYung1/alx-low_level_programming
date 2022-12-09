@@ -7,17 +7,18 @@
  */
 int main(void)
 {
-	int w, n;
+	int w = '0';
+	int n = '0';
 
-	for (w = 48; w <= 56; w++)
+	for (w = '0'; w <= '9'; w++)
 	{
-		for (n = 49; n <= 57; n++)
+		for (n = '0'; n <= '9'; n++)
 		{
-			if (w > n)
+			if (!((w == n || (w > n)))
 			{
 				putchar(w);
 				putchar(n);
-				if (w != 56 || n != 57)
+				if (!(w == '9' && n == '8'))
 				{
 					putchar(',');
 					putchar(',');
