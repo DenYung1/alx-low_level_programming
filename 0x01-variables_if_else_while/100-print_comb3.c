@@ -7,9 +7,9 @@
  */
 int main(void)
 {
-	int w;
+	int w, x;
 
-	for (w = 0; w < 100; w++)
+	for (w = 0; w <= 100; w++)
 	{
 		putchar((w / 10) + '0');
 		putchar((w % 10) + '0');
