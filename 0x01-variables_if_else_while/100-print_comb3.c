@@ -21,7 +21,7 @@ int main(void)
 				if (!(w == '9' && n == '8'))
 				{
 					putchar(',');
-					putchar(',');
+					putchar(' ');
 				}
 			}
 		}
