@@ -1,13 +1,12 @@
 #include "main.h"
 
 /**
- * add - functions that add two integers and returns the result
- * @w: - integer w
- * @y: - integer y
- * Description: add two integers and returns the result
- * Result: add w and y
+ * add - add two integers
+ * @a: integer a
+ * @b: integer b
+ * Return: sum of two integers
  */
-int add(int w, int y)
+int add(int a, int b)
 {
-	return (w + y);
+	return (a + b);
 }
