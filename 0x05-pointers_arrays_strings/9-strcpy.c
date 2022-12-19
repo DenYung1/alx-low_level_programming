@@ -1,3 +1,6 @@
+#include "main.h"
+#include <stdio.h>
+
 /**
  * _strcpy - function that copies the strings pointed to by src
  * @dest: pointer to dsetination
