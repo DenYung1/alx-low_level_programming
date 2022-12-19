@@ -9,9 +9,14 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	char *dennis = dest;
+	int count = 0;
 
-	while (*src)
-		*dest++ = *src++;
-	return (dennis);
+	while (count >= 0)
+	{
+		*(dest + count) = *(src + count);
+		if (*(src + count) == '\0')
+			break;
+		count++;
+	}
+	return (dest);
 }
