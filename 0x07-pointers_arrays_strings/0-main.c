@@ -1,6 +1,5 @@
-#include "main.h"
-#include <stdio.h>
 
+<<<<<<< HEAD
 /**
  * simple_print_buffer - prints buffer in hexa
  * @buffer: the address of memory to print
@@ -67,3 +66,5 @@ int main(void)
   return (0);
 >>>>>>> 6fe59c576b2d4f8351fa9e961f9fe5daa843b78a
 }
+=======
+>>>>>>> 959eee79ee8249af8f2ed4f0614ceccf6ba8ccf8
