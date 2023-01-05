@@ -1,34 +1,39 @@
-#include "main.h"
+#include "holberton.h"
 
-int is_divisible(int num, int div);
+int find_sqrt(int num, int root);
+int _sqrt_recursion(int n);
 
 /**
- * is_prime_number - Afunction that checks if a number is prime.
- * @n: an input integer
- * Return: 1 if n is prime or  0 in otherwise
+ * find_sqrt - Finds the natural square root of an inputted number.
+ * @num: The number to find the square root of.
+ * @root: The root to be tested.
+ *
+ * Return: If the number has a natural square root - the square root.
+ *         If the number does not have a natural square root - -1.
  */
-int is_prime_number(int n)
+int find_sqrt(int num, int root)
 {
-	int div = 2;
-
-	if (n <= 1)
-		return (0);
-	if (n <= 3)
-		return (1);
-	return (is_divisible(n, div));
+	if ((root * root) == num)
+		return (root);
+	if (root == num / 2)
+		return (-1);
+	return (find_sqrt(num, root + 1));
 }
 
 /**
- * is_divisible - check if num is divisible
- * @num: the number to be checked
- * @div: the result of division
- * Return: 1 if num is divisible or 0 if numis not divisible
+ * _sqrt_recursion - Returns the natural square root of a number.
+ * @n: The number to return the square root of.
+ *
+ * Return: If n has a natural square root - the natural square root of n.
+ *         If n does not have a natural square root - -1.
  */
-int is_divisible(int num, int div)
+int _sqrt_recursion(int n)
 {
-	if (num % div == 0)
-		return (0);
-	if (div == num / 2)
+	int root = 0;
+
+	if (n < 0)
+		return (-1);
+	if (n == 1)
 		return (1);
-	return (is_divisible(num, div + 1));
+	return (find_sqrt(n, root));
 }
