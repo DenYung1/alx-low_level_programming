@@ -1,69 +1,33 @@
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/uio.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <fcntl.h>
-#include "main.h"
 
 /**
- * create_file - append to file
- * @filename: path to file
- * @text_content: content
- * Return: chars read
+ * create_file - A function that creates a file
+ * @filename: The filename to create
+ * @text_content: A NULL terminated string to write to the file
+ * Return: 1 on success, -1 if file can not be created, nor written,
+ * nor write fails.
  */
-
 int create_file(const char *filename, char *text_content)
 {
-int fd;
-ssize_t w;
-int size;
-char *mem;
+	int fdo, fdw, len = 0;
 
-if (!filename)
-{
-return (-1);
-}
-fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
-if (fd == -1)
-return (-1);
-if (!text_content)
-{
-close(fd);
-return (1);
-}
-size = _strlen(text_content);
-mem = malloc(sizeof(char) * size);
-if (!mem)
-{
-close(fd);
-return (-1);
-}
-w = write(fd, text_content, size);
-if (w == -1)
-{
-close(fd);
-free(mem);
-return (-1);
-}
-close(fd);
-free(mem);
-return (1);
-}
+	if (filename == NULL)
+		return (-1);
 
-/**
- * _strlen - len
- *
- * @s: is a pointer to a char
- *
- * Return: Always 0.
- */
+	fdo = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
 
-int _strlen(const char *s)
-{
-int i = 0;
-
-while (*(s + i) != '\0')
-{
-i++;
-}
-
-return (i);
+	if (fdo < 0)
+		return (-1);
+	while (text_content && *(text_content + len))
+		len++;
+	fdw = write(fdo, text_content, len);
+	close(fdo);
+	if (fdw < 0)
+		return (-1);
+	return (1);
 }
