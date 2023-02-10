@@ -1,62 +1,39 @@
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/uio.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <fcntl.h>
-#include "main.h"
 
 /**
- * append_text_to_file - apends text to file
- * @filename: path to file
- * @text_content: content
- * Return: 1 or -1
+ * append_text_to_file - A function that appends text at the end to the  file
+ * @filename: The filename to open and append in
+ * @text_content: The NULL terminated string to add
+ * Return: 1 on success, -1 if the file can not be created, nor written,
+ * nor write fails.
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-int fd;
-ssize_t w;
-int size;
+	int fdo, fdw, len = 0;
 
-if (!filename)
-return (-1);
+	if (filename == NULL)
+		return (-1);
+	fdo = open(filename, O_RDWR | O_APPEND);
 
-fd = open(filename, O_WRONLY | O_APPEND);
+	if (fdo < 0)
+		return (-1);
+	if (text_content == NULL)
+	{
+		close(fdo);
+		return (1);
+	}
+	while (*(text_content + len))
+		len++;
 
-if (fd == -1)
-return (-1);
+	fdw = write(fdo, text_content, len);
 
-if (!text_content)
-{
-close(fd);
-return (1);
-}
-
-size = _strlen(text_content);
-w = write(fd, text_content, size);
-
-if (w == -1)
-{
-close(fd);
-return (-1);
-}
-close(fd);
-return (1);
-}
-
-/**
- * _strlen - len
- *
- * @s: is a pointer to a char
- *
- * Return: Always 0.
- */
-
-int _strlen(const char *s)
-{
-int i = 0;
-
-while (*(s + i) != '\0')
-{
-i++;
-}
-
-return (i);
+	close(fdo);
+	if (fdw < 0)
+		return (-1);
+	return (1);
 }
