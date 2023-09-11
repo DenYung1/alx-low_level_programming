@@ -1,36 +1,58 @@
 #include "search_algos.h"
 
 /**
- * binary_search - performs binary search
- * @array: the integer array
- * @size: its size
- * @value: value to search for
+ * print_array - print the values in an array
+ * @array: the array of values
+ * @lo: the smallest index
+ * @hi: the greatest index
+ */
+static void print_array(int *array, size_t lo, size_t hi)
+{
+	printf("Searching in array: ");
+	while (lo <= hi)
+	{
+		if (lo < hi)
+			printf("%d, ", array[lo++]);
+		else
+			printf("%d\n", array[lo++]);
+	}
+}
+
+/**
+ * _binary_search - search for a value in a sorted array of integers
+ * @array: the array of values
+ * @lo: the smallest index
+ * @hi: the greatest index
+ * @value: the value to locate
  *
- * Return: the index found or -1
+ * Return: If value is not present in array or array is NULL, return -1.
+ * Otherwise, returh the first index where value is located.
+ */
+static int _binary_search(int *array, size_t lo, size_t hi, int value)
+{
+	size_t mid = (lo + hi) / 2;
+
+	if (lo > hi)
+		return (-1);
+
+	print_array(array, lo, hi);
+	if (array[mid] < value)
+		return (_binary_search(array, mid + 1, hi, value));
+	if (array[mid] > value)
+		return (_binary_search(array, lo, mid - 1, value));
+	return (mid);
+}
+
+/**
+ * binary_search - search for a value in a sorted array of integers
+ * @array: the array of values
+ * @size: the number of values
+ * @value: the value to locate
+ *
+ * Return: If value is not present in array or array is NULL, return -1.
+ * Otherwise, returh the first index where value is located.
  */
 int binary_search(int *array, size_t size, int value)
 {
-	size_t i = 0;
-	int *a = array;
-
-	if (!array)
-		return (-1);
-
-	while (size)
-	{
-		for (i = 0, printf("Searching in array: "); i < size; i++)
-			printf("%d%s", a[i], i + 1 == size ? "\n" : ", ");
-
-		i = (size - 1) / 2;
-		if (a[i] == value)
-			return ((a - array) + i);
-		else if (a[i] > value)
-			size = i;
-		else
-		{
-			a += (i + 1);
-			size -= (i + 1);
-		}
-	}
-	return (-1);
+	return (array && size ? _binary_search(array, 0, size - 1, value) : -1);
 }
